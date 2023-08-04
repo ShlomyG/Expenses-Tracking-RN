@@ -7,24 +7,15 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {SafeAreaView, StyleSheet, useColorScheme} from 'react-native';
+
+import {navigationReadiness, navigationRef} from './src/navigation/RootNavigation';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
+import AppNavigator, {NavigationTheme} from './src/navigation/AppNavigator';
+import {Provider} from 'react-redux';
+import store from './src/store/Store';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -37,22 +28,21 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
+    <SafeAreaView style={{flex: 1}}>
+      <Provider store={store}>
+        {/* <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+      /> */}
+        <NavigationContainer
+          // theme={NavigationTheme}
+          onReady={() => {
+            navigationReadiness.setIsReady(true);
+          }}
+          ref={navigationRef}>
+          <AppNavigator />
+        </NavigationContainer>
+      </Provider>
     </SafeAreaView>
   );
 };
