@@ -1764,42 +1764,6 @@
                     }
                 },
                 {
-                    "source": "/Users/shlomygerstner/ExpensesTracking/android/app/build/generated/res/resValues/debug/values/gradleResValues.xml",
-                    "from": {
-                        "startLines": "6,8",
-                        "startColumns": "4,4",
-                        "startOffsets": "156,262",
-                        "endColumns": "63,68",
-                        "endOffsets": "215,326"
-                    },
-                    "to": {
-                        "startLines": "290,291",
-                        "startColumns": "4,4",
-                        "startOffsets": "18464,18528",
-                        "endColumns": "63,68",
-                        "endOffsets": "18523,18592"
-                    }
-                },
-                {
-                    "source": "/Users/shlomygerstner/ExpensesTracking/android/app/src/main/res/values/styles.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "54",
-                        "endLines": "6",
-                        "endColumns": "12",
-                        "endOffsets": "267"
-                    },
-                    "to": {
-                        "startLines": "392",
-                        "startColumns": "4",
-                        "startOffsets": "27202",
-                        "endLines": "395",
-                        "endColumns": "12",
-                        "endOffsets": "27380"
-                    }
-                },
-                {
                     "source": "/Users/shlomygerstner/.gradle/caches/transforms-3/0bbaa5972f900275fec64cf526ac0bea/transformed/lifecycle-viewmodel-2.3.1/res/values/values.xml",
                     "from": {
                         "startLines": "2",
@@ -1817,20 +1781,39 @@
                     }
                 },
                 {
-                    "source": "/Users/shlomygerstner/ExpensesTracking/android/app/src/main/res/values/strings.xml",
+                    "source": "/Users/shlomygerstner/ExpensesTracking-RN/android/app/build/generated/res/resValues/debug/values/gradleResValues.xml",
                     "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "53",
-                        "endOffsets": "65"
+                        "startLines": "6,8",
+                        "startColumns": "4,4",
+                        "startOffsets": "156,262",
+                        "endColumns": "63,68",
+                        "endOffsets": "215,326"
                     },
                     "to": {
-                        "startLines": "322",
+                        "startLines": "290,291",
+                        "startColumns": "4,4",
+                        "startOffsets": "18464,18528",
+                        "endColumns": "63,68",
+                        "endOffsets": "18523,18592"
+                    }
+                },
+                {
+                    "source": "/Users/shlomygerstner/ExpensesTracking-RN/android/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "3",
                         "startColumns": "4",
-                        "startOffsets": "20689",
-                        "endColumns": "53",
-                        "endOffsets": "20738"
+                        "startOffsets": "54",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "267"
+                    },
+                    "to": {
+                        "startLines": "392",
+                        "startColumns": "4",
+                        "startOffsets": "27202",
+                        "endLines": "395",
+                        "endColumns": "12",
+                        "endOffsets": "27380"
                     }
                 },
                 {
@@ -1850,6 +1833,23 @@
                         "endLines": "30,31,200,201,202,235,236,237,238,239,240,249,252,253,254,255,256,257,260,280,281,320,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,366,367,368,369,370,371,372,373,375,376,377,378,387,391,1482,1485,1489,1493,1711,1714,1788,1835,1844,1851,1858,1861,1864,1867,1873,2026",
                         "endColumns": "62,62,50,53,58,47,48,48,47,48,48,40,42,50,42,50,41,49,42,53,47,72,122,95,88,107,116,119,119,101,102,110,106,102,110,168,167,116,109,114,112,155,107,112,90,110,168,97,126,124,94,106,79,75,72,86,70,70,77,79,85,83,71,81,83,76,86,84,78,74,72,88,76,77,72,77,10,10,12,12,10,10,12,12,25,34,10,10,10,10,10,12,12,10",
                         "endOffsets": "2196,2259,13634,13688,13747,15705,15754,15803,15851,15900,15949,16412,16525,16576,16619,16670,16712,16762,16901,17957,18005,20601,20861,20957,21046,21154,21271,21391,21511,21613,21716,21827,21934,22037,22148,22317,22485,22602,22712,22827,22940,23096,23204,23317,23408,23519,23688,23786,23913,24038,24133,24240,24320,24396,24469,24556,24627,24698,24776,24856,24942,25026,25098,25180,25317,25394,25481,25566,25645,25720,25793,25882,26030,26108,26181,26259,26949,27197,96646,96831,97033,97239,112612,112801,119727,122781,123319,123737,124115,124292,124471,124654,125019,136144"
+                    }
+                },
+                {
+                    "source": "/Users/shlomygerstner/ExpensesTracking-RN/android/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "16",
+                        "endColumns": "53",
+                        "endOffsets": "65"
+                    },
+                    "to": {
+                        "startLines": "322",
+                        "startColumns": "4",
+                        "startOffsets": "20689",
+                        "endColumns": "53",
+                        "endOffsets": "20738"
                     }
                 },
                 {
