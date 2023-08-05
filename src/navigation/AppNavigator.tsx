@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// import {Screens} from '../constants/strings';
 import LoginScreen from '../features/login/LoginScreen';
 import {DefaultTheme} from '@react-navigation/native';
 import {ScreensList} from '../constants/screens';
@@ -14,11 +13,12 @@ export type RootStackParamList = {
 const StackNavigator = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator: React.FC = () => {
   return (
-    <StackNavigator.Navigator screenOptions={{headerShown: false}} initialRouteName={ScreensList.LOGIN_SCREEN}>
-      <StackNavigator.Screen name={ScreensList.LOGIN_SCREEN} component={LoginScreen} />
-      <StackNavigator.Screen name={ScreensList.MAIN_TABS_SCREEN} component={TabsNavigator} />
-      {/* <StackNavigator.Screen name={Screens.SPLASH} component={Splash} /> */}
-    </StackNavigator.Navigator>
+    <>
+      <StackNavigator.Navigator screenOptions={{headerShown: false}} initialRouteName={ScreensList.LOGIN_SCREEN}>
+        <StackNavigator.Screen name={ScreensList.LOGIN_SCREEN} component={LoginScreen} />
+        <StackNavigator.Screen name={ScreensList.MAIN_TABS_SCREEN} component={TabsNavigator} />
+      </StackNavigator.Navigator>
+    </>
   );
 };
 

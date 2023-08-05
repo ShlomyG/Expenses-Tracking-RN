@@ -1,14 +1,22 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
+import {batch} from 'react-redux';
 import AppButton from '../../../components/AppButton';
 import {colors} from '../../../constants/colors';
+import {HomeStrings} from '../../../constants/strings';
+import {modalTypeEnum} from '../../../models/expensesModel';
+import {useAppDispatch, useAppSelector} from '../../../store/Store';
 import {getDollar} from '../../../utils/MoneyUtil';
+import {setExpenseDetails, setModalTypeAndOpenModal} from '../../expenseModal/state/ExpenseSlice';
 
 interface Props {
   total: number;
   label?: string;
 }
-const Header: React.FC<Props> = ({total, label = 'Total Expenses'}) => {
+const Header: React.FC<Props> = ({total, label = ''}) => {
+  const dispatch = useAppDispatch();
+  const {filterDetails} = useAppSelector(state => state.homepage);
+
   return (
     <View style={styles.wrapper_container}>
       <View style={styles.total_container}>
@@ -17,9 +25,12 @@ const Header: React.FC<Props> = ({total, label = 'Total Expenses'}) => {
       </View>
       <View style={styles.button_container}>
         <AppButton
-          text={'filter'}
+          text={HomeStrings.FILTER_BUTTON}
           onPress={() => {
-            console.log('filter');
+            batch(() => {
+              dispatch(setExpenseDetails(filterDetails));
+              dispatch(setModalTypeAndOpenModal(modalTypeEnum.FILTER));
+            });
           }}
           styleButton={styles.button_style}
         />

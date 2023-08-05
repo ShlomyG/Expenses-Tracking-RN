@@ -1,8 +1,10 @@
 import {configureStore, combineReducers, ThunkAction, Action} from '@reduxjs/toolkit';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
+import ExpenseSlice from '../features/expenseModal/state/ExpenseSlice';
 import HomeSlice from '../features/homepage/state/HomeSlice';
 const appReducer = combineReducers({
   homepage: HomeSlice,
+  expenseModal: ExpenseSlice,
 });
 
 export const resetState = () => ({
@@ -19,6 +21,11 @@ const rootReducer = (state, action: Action) => {
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: getDefaultMiddleware => {
+    return getDefaultMiddleware({
+      serializableCheck: false,
+    });
+  },
 });
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;

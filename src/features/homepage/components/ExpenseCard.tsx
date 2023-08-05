@@ -1,18 +1,16 @@
 import React from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import {colors} from '../../../constants/colors';
-import {GeneralStrings} from '../../../constants/strings';
+import {Emojis, GeneralStrings} from '../../../constants/strings';
 import {expenseDetails} from '../../../models/expensesModel';
 import {getFormattedDate} from '../../../utils/DatesUtils';
 
-const ExpenseCard = (item: expenseDetails) => {
-  console.log(item);
-
+const ExpenseCard: React.FC = (item: expenseDetails) => {
   return (
     <View style={styles.container}>
       <View style={styles.rightContainer}>
         <View style={styles.imageContainer}>
-          <Text style={styles.Icon}>💳</Text>
+          <Text style={styles.Icon}>{Emojis.CREDIT_CARD}</Text>
         </View>
         <View style={styles.textContainer}>
           <Text>{item?.title}</Text>

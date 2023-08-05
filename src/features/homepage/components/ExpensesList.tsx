@@ -1,59 +1,87 @@
 import React from 'react';
-import {FlatList, StyleSheet, View, Text} from 'react-native';
-import {useAppDispatch} from '../../../store/Store';
-// import {TransactionSavingDetailsResponse} from '../models/savingsModel';
+import {FlatList, StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {colors} from '../../../constants/colors';
-import {expenseDetails} from '../../../models/expensesModel';
-// import ExpenseCard from './ExpenseCard';
+import {expenseDetails, modalTypeEnum} from '../../../models/expensesModel';
 import {Emojis, HomeStrings} from '../../../constants/strings';
 import ExpenseCard from './ExpenseCard';
+import {useAppDispatch, useAppSelector} from '../../../store/Store';
+import {batch} from 'react-redux';
+import {setModalTypeAndOpenModal} from '../../expenseModal/state/ExpenseSlice';
+import {resetFilter, setCurrentExpenseIndex} from '../state/HomeSlice';
+import {filterModeCheck} from '../../expenseModal/utils/ExpenseModalUtils';
 
+export const expensesMockData: expenseDetails[] = [
+  {
+    _id: '123123432',
+    title: 'Fish Restaurant',
+    amount: 106,
+    date: new Date('2023-07-29'),
+  },
+  {
+    _id: '144123432',
+    title: 'Supermarket',
+    amount: 240,
+    date: new Date('2023-07-09'),
+  },
+  {
+    _id: '14654632',
+    title: 'Fitness Studio',
+    amount: 89.9,
+    date: new Date('2023-08-01'),
+  },
+];
 const ExpensesList = () => {
-  //   const dispatch = useAppDispatch();
-  //   const [transactionsList, setTransactionsList] = useState<TransactionSavingDetailsResponse[]>([]);
+  const dispatch = useAppDispatch();
+  const {expensesData, filterData, filterDetails} = useAppSelector(state => state.homepage);
+  const isFilterMode = filterModeCheck(filterDetails);
 
-  const expensesMockData: expenseDetails[] = [
-    {
-      _id: '123123432',
-      title: 'Fish Restaurant',
-      amount: 106,
-      date: new Date('2023-07-29'),
-    },
-    {
-      _id: '144123432',
-      title: 'Supermarket',
-      amount: 240,
-      date: new Date('2023-07-09'),
-    },
-    {
-      _id: '14654632',
-      title: 'Fitness Studio',
-      amount: 89.9,
-      date: new Date('2023-08-01'),
-    },
-  ];
   const renderEmptyTransaction = (
-    <View style={styles.emptyList}>
-      <View style={styles.emptyIconContainer}>
-        <Text style={styles.emptyIcon}>{Emojis.FLY_DOLLAR}</Text>
+    <View style={styles.empty_list}>
+      <View style={styles.empty_icon_container}>
+        <Text style={styles.empty_icon}>{isFilterMode ? Emojis.FILTER : Emojis.FLY_DOLLAR}</Text>
       </View>
-      <Text style={styles.emptyListText}>{HomeStrings.NO_EXPENSES}</Text>
+      <Text style={styles.empty_list_text}>{isFilterMode ? HomeStrings.NO_FILTERS : HomeStrings.NO_EXPENSES}</Text>
     </View>
   );
+
+  const renderItem = (item, index) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          batch(() => {
+            dispatch(setCurrentExpenseIndex(index));
+            dispatch(setModalTypeAndOpenModal(modalTypeEnum.EDIT));
+          });
+        }}>
+        {ExpenseCard(item, index)}
+      </TouchableOpacity>
+    );
+  };
+
+  const renderCleanFilter = () => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          dispatch(resetFilter());
+        }}>
+        <Text style={styles.clean_filter_button}>{HomeStrings.CLEAN_FILTER}</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <View style={styles.container}>
       <FlatList
-        style={styles.listStyle}
-        data={expensesMockData}
-        contentContainerStyle={styles.listContainer}
-        // ListHeaderComponent={renderRecurringDeposit}
+        style={styles.list_style}
+        data={isFilterMode ? filterData : expensesData}
+        contentContainerStyle={styles.list_container}
+        ListHeaderComponent={isFilterMode && renderCleanFilter()}
         showsVerticalScrollIndicator={false}
-        renderItem={({item}) => ExpenseCard(item)}
+        renderItem={({item, index}) => renderItem(item, index)}
+        key={index => {
+          index.toString();
+        }}
         ListEmptyComponent={renderEmptyTransaction}
-        // onEndReachedThreshold={0.2}
-        // onEndReached={handleEndReached}
-        // ListFooterComponent={renderListFooterLoader()}
       />
     </View>
   );
@@ -63,7 +91,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  listStyle: {
+  list_style: {
     flex: 1,
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
@@ -71,25 +99,31 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     width: '100%',
   },
-  listContainer: {
+  list_container: {
     paddingBottom: 15,
   },
-  emptyList: {
+  empty_list: {
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom: 15,
   },
-  emptyIconContainer: {
+  empty_icon_container: {
     marginTop: 30,
     marginBottom: 10,
   },
-  emptyIcon: {
+  empty_icon: {
     fontSize: 30,
   },
-  emptyListText: {
+  empty_list_text: {
     color: colors.light_gray,
     fontSize: 16,
     textAlign: 'center',
+  },
+  clean_filter_button: {
+    alignSelf: 'center',
+    color: colors.blue,
+    margin: 6,
+    fontSize: 14,
   },
 });
 
