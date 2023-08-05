@@ -16,6 +16,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import AppNavigator, {NavigationTheme} from './src/navigation/AppNavigator';
 import {Provider} from 'react-redux';
 import store from './src/store/Store';
+import { colors } from './src/constants/colors';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -63,6 +64,8 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+    borderColor:colors.black,
+    borderEndWidth:1,
   },
 });
 

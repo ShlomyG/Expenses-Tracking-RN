@@ -22,7 +22,7 @@ const LoginScreen: React.FC = () => {
           label={LoginStrings.LABEL_INPUT}
         />
         <AppButton
-          text={'Login'}
+          text={LoginStrings.BUTTON_TEXT}
           onPress={() => {
             dispatch(loginSubmit(nameInput));
           }}

@@ -8,4 +8,5 @@ export const colors = {
   light_yellow: '#FAF1E4',
   yellow_text: '#E48A04',
   green: 'green',
+  black_10_opacity: '#0000001A',
 };
