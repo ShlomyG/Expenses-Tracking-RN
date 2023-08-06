@@ -21,6 +21,10 @@ export const ExpenseStrings = {
   FILTERS: 'Filters',
 };
 
+export const ProfileStrings = {
+  LOGOUT: 'Logout',
+};
+
 export const GeneralStrings = {
   DOLLAR_SIGN: '$',
   CONFIRM: 'Confirm',
@@ -37,4 +41,5 @@ export const Emojis = {
   FLY_DOLLAR: '💸',
   FILTER: '🔍',
   CREDIT_CARD: '💳',
+  PROFILE: '👤',
 };

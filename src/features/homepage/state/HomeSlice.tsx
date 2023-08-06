@@ -57,12 +57,12 @@ const HomeSlice = createSlice({
     setCurrentExpenseIndex(state, action: PayloadAction<number>) {
       state.currentExpenseIndex = action.payload;
     },
-    resetState: () => initialState,
+    resetHomeState: () => initialState,
   },
 });
 
 export const {
-  resetState,
+  resetHomeState,
   setExpensesData,
   setNewExpense,
   setEditExpense,

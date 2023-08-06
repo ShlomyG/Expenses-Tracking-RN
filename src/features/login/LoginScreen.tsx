@@ -20,7 +20,7 @@ const LoginScreen: React.FC = () => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <Text>{LoginStrings.TITLE}</Text>
+        <Text style={styles.title_text}>{LoginStrings.TITLE}</Text>
         <AppInput
           value={nameInput}
           onChange={text => {
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   title_text: {
+    marginTop: 50,
     fontWeight: '700',
     fontSize: 28,
   },
