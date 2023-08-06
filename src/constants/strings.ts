@@ -2,6 +2,7 @@ export const LoginStrings = {
   LABEL_INPUT: 'Enter Name',
   BUTTON_TEXT: 'LOGIN',
   HEADER_TITLE: 'Total Expenses',
+  TITLE: 'Tracking Expenses',
 };
 
 export const HomeStrings = {

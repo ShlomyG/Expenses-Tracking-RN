@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginScreen from '../features/login/LoginScreen';
-import {DefaultTheme} from '@react-navigation/native';
 import {ScreensList} from '../constants/screens';
 import TabsNavigator from './TabsNavigator';
 
@@ -20,15 +19,6 @@ const AppNavigator: React.FC = () => {
       </StackNavigator.Navigator>
     </>
   );
-};
-
-export const NavigationTheme = {
-  dark: false,
-  colors: {
-    ...DefaultTheme.colors,
-    primary: 'black',
-    background: 'white',
-  },
 };
 
 export default AppNavigator;

@@ -17,7 +17,7 @@ const AppDatePicker: React.FC<AppDatePickerProps> = ({value, onChange, startDate
   return (
     <DatePicker
       modal
-      date={value}
+      date={new Date(value)}
       open={visible}
       title={ExpenseStrings.DATE}
       onCancel={() => {

@@ -1,7 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {expenseDetails} from '../../../models/expensesModel';
 import {getFormattedDate} from '../../../utils/DatesUtils';
-import {expensesMockData} from '../components/ExpensesList';
 
 interface HomeScreenState {
   expensesData: expenseDetails[];
@@ -12,7 +11,7 @@ interface HomeScreenState {
 }
 
 const initialState: HomeScreenState = {
-  expensesData: expensesMockData,
+  expensesData: [],
   filterData: [],
   username: '',
   currentExpenseIndex: -1,
@@ -47,7 +46,8 @@ const HomeSlice = createSlice({
       state.filterData = state.expensesData.filter(item => {
         const nameMatch = !action.payload.title || item.title.includes(action.payload.title);
         const amountMatch = !action.payload.amount || item.amount.toString().includes(action.payload.amount.toString());
-        const dateMatch = !action.payload.date || getFormattedDate(item.date) === getFormattedDate(action.payload.date);
+        const dateMatch =
+          !action.payload.date || getFormattedDate(item?.date) === getFormattedDate(action.payload.date);
         return nameMatch && amountMatch && dateMatch;
       });
     },

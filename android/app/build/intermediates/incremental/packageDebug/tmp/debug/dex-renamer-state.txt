@@ -1,4 +1,4 @@
-#Sat Aug 05 16:10:52 IDT 2023
+#Sun Aug 06 06:19:19 IDT 2023
 base.0=/Users/shlomygerstner/ExpensesTracking-RN/android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/Users/shlomygerstner/ExpensesTracking-RN/android/app/build/intermediates/dex/debug/mergeLibDexDebug/0/classes.dex
 base.2=/Users/shlomygerstner/ExpensesTracking-RN/android/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
