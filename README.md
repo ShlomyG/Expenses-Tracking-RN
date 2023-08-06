@@ -9,7 +9,7 @@ Technology
 
 Screens
 --------
-- Login Screen: The opening screen of the application, when the page goes up in the background, the user pool is drawn from the storage for the use of the application,
+- Login Screen: The opening screen of the application, when the page goes up in the background, the user pool is get from the storage for the use of the application,
 On the name field page, the button is disabled when the field is empty.
 
 - Home Screen: On the home screen you see the list of expenses in the information and it exists, if there is no indication to the user that the list is empty because there is no information or because of a filter, if a filter is made the button to clear the filter appears at the top of the list,
