@@ -9,21 +9,36 @@ Technology
 
 Screens
 --------
-- Login Screen: The opening screen of the application, when the page goes up in the background, the user pool is get from the storage for the use of the application,
-On the name field page, the button is disabled when the field is empty.
+Login Screen:
 
-- Home Screen: On the home screen you see the list of expenses in the information and it exists, if there is no indication to the user that the list is empty because there is no information or because of a filter, if a filter is made the button to clear the filter appears at the top of the list,
-At the top of the page is the total amount of expenses.
-If the user enters the application a second time, the list of his expenses will be saved and displayed.
+- The opening screen of the application
+- The "username" field button is disabled if the field is empty.
+- on backgroung the app get users pool data from storage for login check if the user exist.
 
-- Expense Modal: The component of the model is generic and presents three modes of
-create, edit (clicking on one of the items in the list) and filter.
+Home Screen:
 
-- Profile: There is a logout button on the profile page, I didn't have time to limit the number of items.
+- The home screen shows a list of expenses and related information.
+- If the list is empty, there is an indication for the user if this is filter or expenses list is empty.
+- When a filter is applied, a "Clear Filter" button appears at the top of the list.
+- The total amount of expenses is displayed at the top of the page.
+- The user's expense list is saved and displayed on subsequent visits.
 
-- Bonus:
-  
-React Navigation: I used the library to manage the transition between pages and to add the tabs on the main page
+Expense Modal:
 
-Tests: I didn't have time to take care of the tests
+- The modal component has three modes: Create, Edit (when clicking on an item), and Filter.
+- in add and edit mode, the button is disabled when user not fill all the fields
+
+Profile:
+
+- The profile page includes a logout button.
+- The number of items is not limited at this time.
+
+Bonus Features:
+
+React Navigation:
+Utilized the React Navigation library to manage page transitions and implement tabs on the main page.
+
+Tests:
+Test implementation is pending due to time constraints.
+
 
