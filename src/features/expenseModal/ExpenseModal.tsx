@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import Modal from 'react-native-modal';
 import {useAppDispatch, useAppSelector} from '../../store/Store';
 import {colors} from '../../constants/colors';
@@ -49,64 +49,66 @@ const ExpenseModal: React.FC<Props> = ({isModalVisible, modalType}) => {
 
   return (
     <View>
-      <Modal
-        isVisible={isModalVisible}
-        style={styles.modal_view}
-        swipeDirection={['down']}
-        onSwipeComplete={() => {
-          closeModal();
-        }}>
-        <View style={styles.modal_wrapper}>
-          <View style={styles.modal_container}>
-            <Text style={styles.modal_title}>{modalTypeDetails.title}</Text>
-            <View style={styles.inputs_container}>
-              <AppInput
-                value={title}
-                onChange={(text: string) => {
-                  dispatch(setExpenseTitle(text));
-                }}
-                label={ExpenseStrings.TITLE}
-              />
-              <AppInput
-                value={amount && amount?.toString()}
-                onChange={text => {
-                  dispatch(setExpenseAmount(parseInt(text)));
-                }}
-                label={ExpenseStrings.AMOUNT}
-              />
-              <TouchableOpacity
-                onPress={() => {
-                  dispatch(setDatePickerVisible(true));
-                }}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Modal
+          isVisible={isModalVisible}
+          style={styles.modal_view}
+          swipeDirection={['down']}
+          onSwipeComplete={() => {
+            closeModal();
+          }}>
+          <View style={styles.modal_wrapper}>
+            <View style={styles.modal_container}>
+              <Text style={styles.modal_title}>{modalTypeDetails.title}</Text>
+              <View style={styles.inputs_container}>
                 <AppInput
-                  editable={false}
-                  value={getFormattedDate(date)}
-                  onChange={text => {}}
-                  label={ExpenseStrings.DATE}
+                  value={title}
+                  onChange={(text: string) => {
+                    dispatch(setExpenseTitle(text));
+                  }}
+                  label={ExpenseStrings.TITLE}
                 />
-              </TouchableOpacity>
+                <AppInput
+                  value={amount && amount?.toString()}
+                  onChange={text => {
+                    dispatch(setExpenseAmount(parseInt(text)));
+                  }}
+                  label={ExpenseStrings.AMOUNT}
+                />
+                <TouchableOpacity
+                  onPress={() => {
+                    dispatch(setDatePickerVisible(true));
+                  }}>
+                  <AppInput
+                    editable={false}
+                    value={getFormattedDate(date)}
+                    onChange={text => {}}
+                    label={ExpenseStrings.DATE}
+                  />
+                </TouchableOpacity>
+              </View>
+              <AppButton
+                text={GeneralStrings.CONFIRM}
+                onPress={() => {
+                  modalTypeDetails.onPress(expenseModalDetails);
+                  dispatch(resetModalState());
+                }}
+                enable={submitEnabled || isFilterType}
+              />
+              <AppButton
+                text={GeneralStrings.CANCEL}
+                styleButton={styles.cancel_button}
+                onPress={() => {
+                  batch(() => {
+                    dispatch(setModalVisible(false));
+                    dispatch(isFilterType ? resetFilter() : resetModalState());
+                  });
+                }}
+              />
             </View>
-            <AppButton
-              text={GeneralStrings.CONFIRM}
-              onPress={() => {
-                modalTypeDetails.onPress(expenseModalDetails);
-                dispatch(resetModalState());
-              }}
-              enable={submitEnabled || isFilterType}
-            />
-            <AppButton
-              text={GeneralStrings.CANCEL}
-              styleButton={styles.cancel_button}
-              onPress={() => {
-                batch(() => {
-                  dispatch(setModalVisible(false));
-                  dispatch(isFilterType ? resetFilter() : resetModalState());
-                });
-              }}
-            />
           </View>
-        </View>
-      </Modal>
+        </Modal>
+      </TouchableWithoutFeedback>
       <AppDatePicker
         onChange={newDate => {
           dispatch(setExpenseDate(newDate));
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
   modal_container: {
     borderTopRightRadius: 16,
     borderTopLeftRadius: 16,
-    height: '80%',
+    height: '90%',
     backgroundColor: colors.white,
     justifyContent: 'center',
     alignItems: 'center',
@@ -140,8 +142,9 @@ const styles = StyleSheet.create({
   },
   modal_title: {
     color: colors.gray,
-    fontWidth: '700',
+    fontWeight: '700',
     fontSize: 20,
+    marginBottom: 46,
   },
   cancel_button: {
     backgroundColor: colors.red_dot,
