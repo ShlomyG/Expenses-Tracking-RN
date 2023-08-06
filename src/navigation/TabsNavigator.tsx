@@ -11,6 +11,7 @@ import {useAppDispatch, useAppSelector} from '../store/Store';
 import ExpenseModal from '../features/expenseModal/ExpenseModal';
 import {setModalTypeAndOpenModal} from '../features/expenseModal/state/ExpenseSlice';
 import {modalTypeEnum} from '../models/expensesModel';
+import ProfileScreen from '../features/profile/ProfileScreen';
 
 export type RootTabsParamList = {
   homeScreen: undefined;
@@ -40,18 +41,11 @@ const TabsNavigator = () => {
         })}>
         <Tab.Screen
           name={TabsScreens.PROFILE_SCREEN}
-          component={HomeScreen}
+          component={ProfileScreen}
           options={{
             tabBarIcon: ({focused}) => <TabItem text={TabsStrings.PROFILE} isFocused={focused} />,
           }}
         />
-        {/* <Tab.Screen
-          name={TabsScreens.ADD_EXPENSE}
-          component={HomeScreen}
-          options={{
-            tabBarIcon: ({focused}) => <TabItem text={TabsStrings.ADD_EXPENSE} isFocused={focused} />,
-          }}
-        /> */}
         <Tab.Screen
           name={TabsScreens.HOME_SCREEN}
           component={HomeScreen}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {FlatList, StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {colors} from '../../../constants/colors';
 import {expenseDetails, modalTypeEnum} from '../../../models/expensesModel';
@@ -9,6 +9,7 @@ import {batch} from 'react-redux';
 import {setModalTypeAndOpenModal} from '../../expenseModal/state/ExpenseSlice';
 import {resetFilter, setCurrentExpenseIndex} from '../state/HomeSlice';
 import {filterModeCheck} from '../../expenseModal/utils/ExpenseModalUtils';
+import {updateExpensesListInStorage} from '../state/HomeAction';
 
 export const expensesMockData: expenseDetails[] = [
   {
@@ -32,7 +33,7 @@ export const expensesMockData: expenseDetails[] = [
 ];
 const ExpensesList = () => {
   const dispatch = useAppDispatch();
-  const {expensesData, filterData, filterDetails} = useAppSelector(state => state.homepage);
+  const {expensesData, filterData, filterDetails, username} = useAppSelector(state => state.homepage);
   const isFilterMode = filterModeCheck(filterDetails);
 
   const renderEmptyTransaction = (
@@ -68,6 +69,13 @@ const ExpensesList = () => {
       </TouchableOpacity>
     );
   };
+
+  useEffect(() => {
+    if (expensesData.length) {
+      updateExpensesListInStorage(username, expensesData);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [expensesData]);
 
   return (
     <View style={styles.container}>

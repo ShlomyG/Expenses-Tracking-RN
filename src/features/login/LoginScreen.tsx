@@ -1,19 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Text, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import AppButton from '../../components/AppButton';
 import AppInput from '../../components/AppInput';
 import {LoginStrings} from '../../constants/strings';
-import {useAppDispatch} from '../../store/Store';
-import {loginSubmit} from './state/LoginAction';
+import {useAppDispatch, useAppSelector} from '../../store/Store';
+import {getNameStringValid} from '../../utils/StringsUtil';
+import {getUsersList, loginSubmit} from './state/LoginAction';
 
 const LoginScreen: React.FC = () => {
   const dispatch = useAppDispatch();
   const [nameInput, setNameInput] = useState('');
+  const {users} = useAppSelector(state => state.login);
+
+  useEffect(() => {
+    dispatch(getUsersList());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
-        <Text>Login Screen</Text>
+        <Text style={styles.title_text}>{LoginStrings.TITLE}</Text>
         <AppInput
           value={nameInput}
           onChange={text => {
@@ -24,7 +31,7 @@ const LoginScreen: React.FC = () => {
         <AppButton
           text={LoginStrings.BUTTON_TEXT}
           onPress={() => {
-            dispatch(loginSubmit(nameInput));
+            dispatch(loginSubmit(getNameStringValid(nameInput), users));
           }}
           enable={nameInput !== ''}
         />
@@ -38,6 +45,11 @@ const styles = StyleSheet.create({
     marginVertical: 50,
     alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  title_text: {
+    marginTop: 50,
+    fontWeight: '700',
+    fontSize: 28,
   },
 });
 

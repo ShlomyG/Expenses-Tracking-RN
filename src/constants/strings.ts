@@ -2,6 +2,7 @@ export const LoginStrings = {
   LABEL_INPUT: 'Enter Name',
   BUTTON_TEXT: 'LOGIN',
   HEADER_TITLE: 'Total Expenses',
+  TITLE: 'Tracking Expenses',
 };
 
 export const HomeStrings = {
@@ -20,6 +21,10 @@ export const ExpenseStrings = {
   FILTERS: 'Filters',
 };
 
+export const ProfileStrings = {
+  LOGOUT: 'Logout',
+};
+
 export const GeneralStrings = {
   DOLLAR_SIGN: '$',
   CONFIRM: 'Confirm',
@@ -36,4 +41,5 @@ export const Emojis = {
   FLY_DOLLAR: '💸',
   FILTER: '🔍',
   CREDIT_CARD: '💳',
+  PROFILE: '👤',
 };

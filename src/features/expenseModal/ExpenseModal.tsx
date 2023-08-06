@@ -74,6 +74,7 @@ const ExpenseModal: React.FC<Props> = ({isModalVisible, modalType}) => {
                     dispatch(setExpenseAmount(parseInt(text)));
                   }}
                   label={ExpenseStrings.AMOUNT}
+                  keyboardType={'numeric'}
                 />
                 <TouchableOpacity
                   onPress={() => {
@@ -81,8 +82,8 @@ const ExpenseModal: React.FC<Props> = ({isModalVisible, modalType}) => {
                   }}>
                   <AppInput
                     editable={false}
-                    value={getFormattedDate(date)}
-                    onChange={text => {}}
+                    value={getFormattedDate(date ?? new Date())}
+                    onChange={() => {}}
                     label={ExpenseStrings.DATE}
                   />
                 </TouchableOpacity>

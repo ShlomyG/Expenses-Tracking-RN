@@ -7,17 +7,15 @@ import {useAppDispatch} from '../store/Store';
 interface AppDatePickerProps {
   value: Date;
   onChange: (date: Date) => void;
-  startDate?: Date;
-  endDate?: Date;
   onCancel?: () => void;
   visible: boolean;
 }
-const AppDatePicker: React.FC<AppDatePickerProps> = ({value, onChange, startDate, onCancel, endDate, visible}) => {
+const AppDatePicker: React.FC<AppDatePickerProps> = ({value, onChange, onCancel, visible}) => {
   const dispatch = useAppDispatch();
   return (
     <DatePicker
       modal
-      date={value}
+      date={new Date(value)}
       open={visible}
       title={ExpenseStrings.DATE}
       onCancel={() => {
@@ -29,8 +27,6 @@ const AppDatePicker: React.FC<AppDatePickerProps> = ({value, onChange, startDate
       theme="light"
       confirmText={GeneralStrings.CONFIRM}
       cancelText={GeneralStrings.CANCEL}
-      minimumDate={startDate && startDate}
-      maximumDate={endDate && endDate}
       onConfirm={date => {
         onChange(date);
         dispatch(setDatePickerVisible(false));
