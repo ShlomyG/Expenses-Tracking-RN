@@ -24,12 +24,19 @@ ios/.xcode.env.local
 
 # Android/IntelliJ
 #
-build/
+build
 .idea
-.gradle
+/.gradle
 local.properties
 *.iml
 *.hprof
+local.properties
+android/libs
+out
+target
+log
+
+
 
 # node.js
 #
