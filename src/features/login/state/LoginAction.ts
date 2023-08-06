@@ -12,7 +12,6 @@ import {setNewUser, setUsersList} from './LoginSlice';
 
 export const getUsersList = (): AppThunk => async dispatch => {
   const usersListFromStorage = await getUsersFromLocalStorage();
-
   dispatch(setUsersList(usersListFromStorage));
 };
 
@@ -30,17 +29,8 @@ export const loginSubmit =
       const updateList = getState().login.users;
       await saveUsersToLocalStorage(updateList);
     }
-    //TODO!!!
-    ///check if user exist in storage and get data
-    // else...
     dispatch(setUsername(username));
     resetTo(ScreensList.MAIN_TABS_SCREEN);
-
-    // try {
-    // } catch (error) {
-    // } finally {
-    //   dispatch(setIsAuthLoading(false));
-    // }
   };
 
 export const checkIfUserExist = (username, usersList) => {

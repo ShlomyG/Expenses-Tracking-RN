@@ -19,9 +19,6 @@ const LoginSlice = createSlice({
     setNewUser(state, action: PayloadAction<userDetails>) {
       state.users.push(action.payload);
     },
-    // setEditExpense(state, action: PayloadAction<expenseDetails>) {
-    //   state.expensesData[state.currentExpenseIndex] = action.payload;
-    // },
     resetState: () => initialState,
   },
 });

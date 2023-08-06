@@ -5,7 +5,7 @@ import {Emojis, GeneralStrings} from '../../../constants/strings';
 import {expenseDetails} from '../../../models/expensesModel';
 import {getFormattedDate} from '../../../utils/DatesUtils';
 
-const ExpenseCard: React.FC = (item: expenseDetails) => {
+const ExpenseCard = (item: expenseDetails) => {
   return (
     <View style={styles.container}>
       <View style={styles.rightContainer}>

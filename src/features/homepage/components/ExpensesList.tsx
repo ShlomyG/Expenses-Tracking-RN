@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {FlatList, StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {colors} from '../../../constants/colors';
-import {expenseDetails, modalTypeEnum} from '../../../models/expensesModel';
+import {modalTypeEnum} from '../../../models/expensesModel';
 import {Emojis, HomeStrings} from '../../../constants/strings';
 import ExpenseCard from './ExpenseCard';
 import {useAppDispatch, useAppSelector} from '../../../store/Store';
@@ -11,26 +11,6 @@ import {resetFilter, setCurrentExpenseIndex} from '../state/HomeSlice';
 import {filterModeCheck} from '../../expenseModal/utils/ExpenseModalUtils';
 import {updateExpensesListInStorage} from '../state/HomeAction';
 
-export const expensesMockData: expenseDetails[] = [
-  {
-    _id: '123123432',
-    title: 'Fish Restaurant',
-    amount: 106,
-    date: new Date('2023-07-29'),
-  },
-  {
-    _id: '144123432',
-    title: 'Supermarket',
-    amount: 240,
-    date: new Date('2023-07-09'),
-  },
-  {
-    _id: '14654632',
-    title: 'Fitness Studio',
-    amount: 89.9,
-    date: new Date('2023-08-01'),
-  },
-];
 const ExpensesList = () => {
   const dispatch = useAppDispatch();
   const {expensesData, filterData, filterDetails, username} = useAppSelector(state => state.homepage);
@@ -54,7 +34,7 @@ const ExpensesList = () => {
             dispatch(setModalTypeAndOpenModal(modalTypeEnum.EDIT));
           });
         }}>
-        {ExpenseCard(item, index)}
+        {ExpenseCard(item)}
       </TouchableOpacity>
     );
   };

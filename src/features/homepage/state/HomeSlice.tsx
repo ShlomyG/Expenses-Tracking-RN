@@ -45,7 +45,8 @@ const HomeSlice = createSlice({
     setFilterData(state, action: PayloadAction<expenseDetails>) {
       state.filterData = state.expensesData.filter(item => {
         const nameMatch = !action.payload.title || item.title.includes(action.payload.title);
-        const amountMatch = !action.payload.amount || item.amount.toString().includes(action.payload.amount.toString());
+        const amountMatch =
+          !action.payload.amount || item?.amount?.toString().includes(action.payload.amount.toString());
         const dateMatch =
           !action.payload.date || getFormattedDate(item?.date) === getFormattedDate(action.payload.date);
         return nameMatch && amountMatch && dateMatch;
